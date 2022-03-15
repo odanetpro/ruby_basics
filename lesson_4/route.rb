@@ -13,9 +13,4 @@ class Route
   def del_station(station)
     @stations.delete(station) if station != @stations[0] && station != @stations[-1]
   end
-
-  def display
-    puts "\nМаршрут:"
-    self.stations.each_with_index { |station, i| puts "#{i + 1}. #{station.title}" }
-  end
 end

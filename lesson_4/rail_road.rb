@@ -139,7 +139,7 @@ class RailRoad
     print "\nВведите номер станции чтобы добавить к маршруту: "
     station = @stations[gets.to_i - 1]
 
-    route.display
+    display_route(route)
     print "\nВведите номер станции после которой необходимо добавить: "
     prev_station = route.stations[gets.to_i - 1]
 
@@ -151,7 +151,7 @@ class RailRoad
     print "\nВведите номер маршрута: "
     route = @routes[gets.to_i - 1]
 
-    route.display
+    display_route(route)
     print "\nВведите номер станции, чтобы удалить из маршрута: "
     station = route.stations[gets.to_i - 1]
 
@@ -219,6 +219,11 @@ class RailRoad
   def display_trains
     puts "\nСписок поездов:"
     @trains.each_with_index { |train, i| puts "#{i + 1}. #{train.number}" }
+  end
+
+  def display_route(route)
+    puts "\nМаршрут:"
+    route.stations.each_with_index { |station, i| puts "#{i + 1}. #{station.title}" }
   end
 
   def display_routes
