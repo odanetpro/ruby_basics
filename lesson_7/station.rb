@@ -50,8 +50,7 @@ class Station
   end
   
   def trains
-    return @trains unless block_given?
-    @trains.each { |train| yield(train) }
+    block_given? ? @trains.each { |train| yield(train) } : @trains
   end
 
   private

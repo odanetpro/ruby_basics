@@ -1,14 +1,14 @@
 class RailRoad
   def initialize
-    @stations = [Station.new('Москва'), Station.new('Новосибирск'), Station.new('Владивосток')]
-    @routes = [Route.new(@stations[0], @stations[2])]
-    @trains = [PassengerTrain.new('001-AA'), CargoTrain.new('904-28')]
-    @wagons = [PassengerWagon.new('p05678', 3), CargoWagon.new('c78102', 1000)]
-    @trains[0].assign_route(@routes[0])
-    # @stations = []
-    # @routes = []
-    # @trains = []
-    # @wagons = []
+    # @stations = [Station.new('Москва'), Station.new('Новосибирск'), Station.new('Владивосток')]
+    # @routes = [Route.new(@stations[0], @stations[2])]
+    # @trains = [PassengerTrain.new('001-AA'), CargoTrain.new('904-28')]
+    # @wagons = [PassengerWagon.new('p05678', 3), CargoWagon.new('c78102', 1000)]
+    # @trains[0].assign_route(@routes[0])
+    @stations = []
+    @routes = []
+    @trains = []
+    @wagons = []
   end
 
   def main_menu
@@ -351,24 +351,4 @@ class RailRoad
       i += 1
     end
   end
-
-  # def display_trains_on_station
-  #   display_stations
-  #   print "\nВведите номер станции: "
-  #   station = @stations[gets.to_i - 1]
-
-  #   if station
-  #     puts "\nНа станции #{station.title}:"
-
-  #     puts "\nГрузовые поезда:"
-  #     station.cargo_trains_list.each { |train| puts "#{train.number}" }
-  #     puts "всего: #{station.cargo_trains_amount}"
-
-  #     puts "\nПассажирские поезда:"
-  #     station.passenger_trains_list.each { |train| puts "#{train.number}" }
-  #     puts "всего: #{station.passenger_trains_amount}"
-  #   else
-  #     puts "\nСтанция не найдена"
-  #   end
-  # end
 end
