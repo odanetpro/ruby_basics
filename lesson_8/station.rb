@@ -6,18 +6,11 @@ class Station
   include InstanceCounter
   attr_reader :title
 
-  @@all = []
-
   def initialize(title)
     @title = title
     @trains = []
-    @@all << self
     register_instance
     validate!
-  end
-
-  def self.all
-    @@all
   end
 
   def valid?

@@ -11,13 +11,10 @@ class Train
   # 3 буквы/цифры (обязат.) - (необязат)  2 буквы/цифры (обязат.)
   NUMBER_FORMAT = /^[а-яa-z0-9]{3}-*[а-яa-z0-9]{2}$/i.freeze
 
-  @@all = []
-
   def initialize(number)
     @number = number
     @wagons = []
     @speed = 0
-    @@all << self
     register_instance
     validate!
   end
@@ -27,15 +24,6 @@ class Train
     true
   rescue RuntimeError
     false
-  end
-
-  def self.all
-    @@all
-  end
-
-  def self.find(train_number)
-    @@all.each { |train| return train if train.number.downcase == train_number.downcase }
-    nil
   end
 
   def start(speed)
@@ -62,24 +50,20 @@ class Train
 
   def move_next_station
     station = next_station
-    if station
-      @current_station.del_train(self)
-      @current_station = station
-      station.add_train(self)
-    else
-      raise 'Нельзя переместить поезд на следующую станцию'
-    end
+    raise 'Нельзя переместить поезд на следующую станцию' unless station
+
+    @current_station.del_train(self)
+    @current_station = station
+    station.add_train(self)
   end
 
   def move_prev_station
     station = prev_station
-    if station
-      @current_station.del_train(self)
-      @current_station = station
-      station.add_train(self)
-    else
-      raise 'Нельзя переместить поезд на предыдущую станцию'
-    end
+    raise 'Нельзя переместить поезд на предыдущую станцию' unless station
+
+    @current_station.del_train(self)
+    @current_station = station
+    station.add_train(self)
   end
 
   def next_station
@@ -89,7 +73,7 @@ class Train
 
   def prev_station
     index = @route.stations.index(current_station)
-    @route.stations[index - 1] if index && index.positive?
+    @route.stations[index - 1] if index&.positive?
   end
 
   def cargo?
